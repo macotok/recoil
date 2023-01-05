@@ -6,15 +6,15 @@
 
 ## Reduxとの違い
 
- - 状態管理ライブラリのひとつであるReduxは、Stateを管理しているStoreがひとつ。そのため、ひとつ更新があるとその他のコンポーネントでも影響を受ける
- - 一方で、RecoilはReduxでいうStoreをAtomとして、そのAtomを複数持つことができる。したがって、Atomで更新をかけたときに、そのAtomを利用してるコンポーネントのみ影響を受ける
+ - 状態管理ライブラリのひとつで、ReduxはStateを管理しているStoreがひとつ
+ - 一方で、RecoilはReduxでいうStoreをAtomとして、そのAtomを複数持つことができる。したがってAtomが更新されると、そのAtomを利用してるコンポーネントのみrederingする
 
 ## useContextとの違い
 
  - Reactのhook useContextはComonentのrootにproviderを作る
- - 子のCompoonentで更新をかけた場合、そのrootのコンポーネントがレンダリングされる。
- - さらにその子とrootコンポーネントの間のコンポーネントもレンダリングされる。つまり、context配下の全てのコンポーネントがレンダリングされる
-
+ - 子のCompoonentが更新されると、そのrootのコンポーネントがレンダリングされる。
+ - 複数useContextの値をお互いに持ち、更新することができない？Recoilでは `selector` を使って、複数のAtomの値で新しいdataを作ることができる
+ 
 ## 使い方
 
  - states/　で各Atomを作成
@@ -39,6 +39,7 @@ componentで受け取る
 
 ```
 import { useRecoilValue } from "recoil";
+import { InpiutTitleState } from './state/input'
 
 const inpiutTitle = useRecoilValue(InpiutTitleState)
 ```
@@ -58,6 +59,7 @@ componentで更新する
 
 ```
 import { useSetRecoilState } from "recoil";
+import { InpiutTitleState } from './state/input'
 
 const setInputTitle = useSetRecoilState(inputTitleState);
 
@@ -78,6 +80,7 @@ return (
 
 ```
 import { useRecoilState } from "recoil";
+import { InpiutTitleState } from './state/input'
 
 const [inputTitle, setInputTitle] = useRecoilState(inputTitleState)
 ```
