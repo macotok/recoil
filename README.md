@@ -11,8 +11,8 @@
 
 ## useContextとの違い
 
- - Reactのhook useContextはComonentのrootにproviderを作る
- - 子のCompoonentが更新されると、そのrootのコンポーネントがレンダリングされる。
+ - Reactのhook useContextはComonentの親にproviderを作る
+ - useContextを使用している全てのコンポーネントがStateの更新によって再レンダリングされる。
  - 複数useContextの値をお互いに持ち、更新することができない？Recoilでは `selector` を使って、複数のAtomの値で新しいdataを作ることができる
  
 ## 使い方
